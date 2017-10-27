@@ -1,7 +1,10 @@
 #ifndef THREAD_H
 #define THREAD_H
 #include <QThread>
+#include<QProcess>
 #include "mainwindow.h"
+
+typedef unsigned long DWORD;
 
 class Thread:public QThread
 {
@@ -10,6 +13,7 @@ public:
     Thread();
     void setMessage(QString message);
     void stop();
+    void receiveImage();
 protected:
     void run();
 private:

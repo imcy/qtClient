@@ -26,11 +26,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    thread.cpp
+    thread.cpp \
+    pymodel.cpp
 
 HEADERS += \
         mainwindow.h \
-    thread.h
+    thread.h \
+    pymodel.h
 
 FORMS += \
         mainwindow.ui
+
+INCLUDEPATH += -I /home/robot/anaconda2/include/python2.7/
+LIBS += -L /home/robot/anaconda2/lib/python2.7/ -lpython2.7

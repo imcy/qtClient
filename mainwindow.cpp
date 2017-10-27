@@ -1,8 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pymodel.h"
 #include <QDebug>
 
 Thread threadA; //必须放在前面
+pyModel pymodel;
+
 int cli_sockfd;/*客户端SOCKET */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -93,3 +96,26 @@ void MainWindow::receiveData(QString data){
     ui->textOutput->append("server:"+data);
 }
 
+
+void MainWindow::on_initPython_clicked()
+{
+    pymodel.initModel();
+}
+
+void MainWindow::on_readtxt_clicked()
+{
+    QFile f("cut.txt");
+    if(!f.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Open failed." ;
+    }
+    QTextStream txtInput(&f);
+    QString lineStr;
+    while(!txtInput.atEnd())
+    {
+        lineStr = txtInput.readLine();
+        ui->textOutput->append(lineStr);
+    }
+
+    f.close();
+}

@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="click">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>420</x>
       <y>320</y>
       <width>89</width>
       <height>25</height>
@@ -30,7 +30,7 @@
    <widget class="QLineEdit" name="ipEdit">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>10</y>
       <width>151</width>
       <height>25</height>
@@ -68,7 +68,7 @@
      <rect>
       <x>20</x>
       <y>80</y>
-      <width>201</width>
+      <width>281</width>
       <height>191</height>
      </rect>
     </property>
@@ -76,9 +76,9 @@
    <widget class="QPushButton" name="send">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>350</x>
       <y>280</y>
-      <width>89</width>
+      <width>51</width>
       <height>25</height>
      </rect>
     </property>
@@ -89,9 +89,9 @@
    <widget class="QTextEdit" name="inputEdit">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>350</x>
       <y>80</y>
-      <width>211</width>
+      <width>141</width>
       <height>191</height>
      </rect>
     </property>
@@ -112,7 +112,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>350</x>
       <y>60</y>
       <width>67</width>
       <height>17</height>
@@ -120,6 +120,32 @@
     </property>
     <property name="text">
      <string>输入</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="initPython">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>280</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>连接python</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="readtxt">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>读文件</string>
     </property>
    </widget>
   </widget>

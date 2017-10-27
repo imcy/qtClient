@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <sys/shm.h>
 #include "thread.h"
+#include <QFile>
 #define SERVER_PORT 5150
 #define MAX_MSG_SIZE 1024
 
@@ -32,6 +33,10 @@ private slots:
     void on_connectRemote_clicked();
     void on_send_clicked();
     void receiveData(QString data);   //接收传递过来的数据的槽
+    void on_initPython_clicked();
+
+    void on_readtxt_clicked();
+
 private:
     Ui::MainWindow *ui;
 
