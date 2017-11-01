@@ -14,6 +14,7 @@ public:
     void setMessage(QString message);
     void stop();
     void receiveImage();
+    void sendres();
 protected:
     void run();
 private:
@@ -22,6 +23,7 @@ private:
     void printMessage();
 signals:
     void sendData(QString);   //用来传递数据的信号
+
 };
 
 #endif // THREAD_H

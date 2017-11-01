@@ -51,50 +51,55 @@ void Thread::receiveImage(){
        emit sendData("文件接收成功");
        fclose(stream);
        QProcess::execute("python democy.py");
-
-       QFile f("cut.txt");
-       if(!f.open(QIODevice::ReadOnly | QIODevice::Text))
-       {
-           qDebug() << "Open failed." ;
-       }
-       QTextStream txtInput(&f);
-       QString lineStr;
-       while(!txtInput.atEnd())
-       {
-           lineStr = txtInput.readLine();
-           emit sendData(lineStr);
-       }
-
-       char msg[MAX_MSG_SIZE];/* 缓冲区*/
-       QString flag="sendResult";
-       QByteArray ba = flag.toLatin1();
-       char *mm = ba.data();
-       strcpy(msg,mm);
-       //发送结果标志位
-       if(send(cli_sockfd,msg,sizeof(msg),0)==-1){
-           /*发送数据*/
-           emit sendData("发送失败");
-       }else{
-            memset(msg,0,MAX_MSG_SIZE);
-            emit sendData("准备发送计算结果");
-       }
-       //发送结果
-       ba = lineStr.toLatin1();
-       mm = ba.data();
-       strcpy(msg,mm);
-       if(send(cli_sockfd,msg,sizeof(msg),0)==-1){
-           /*发送数据*/
-           emit sendData("发送失败");
-       }else{
-            memset(msg,0,MAX_MSG_SIZE);
-            emit sendData("已经发送计算结果");
-       }
-
-       f.close();
+       sendres(); //发送计算结果
     }
 
 
 }
+void Thread::sendres()
+{
+    QFile f("cut.txt");
+    if(!f.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Open failed." ;
+    }
+    QTextStream txtInput(&f);
+    QString lineStr;
+    while(!txtInput.atEnd())
+    {
+        lineStr = txtInput.readLine();
+        emit sendData(lineStr);
+
+        char msg[MAX_MSG_SIZE];/* 缓冲区*/
+        QString flag="sendResult";
+        QByteArray ba = flag.toLatin1();
+        char *mm = ba.data();
+        strcpy(msg,mm);
+        //发送结果标志位
+        if(send(cli_sockfd,msg,sizeof(msg),0)==-1){
+            /*发送数据*/
+            emit sendData("发送失败");
+        }else{
+            memset(msg,0,MAX_MSG_SIZE);
+            emit sendData("准备发送计算结果");
+
+            //发送结果
+            ba = lineStr.toLatin1();
+            mm = ba.data();
+            strcpy(msg,mm);
+            if(send(cli_sockfd,msg,sizeof(msg),0)==-1){
+                /*发送数据*/
+                emit sendData("发送失败");
+            }else{
+                memset(msg,0,MAX_MSG_SIZE);
+                emit sendData("已经发送计算结果");
+            }
+        }
+    }
+    f.close();
+
+}
+
 void Thread::stop()
 {
     stopped = true;
