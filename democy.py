@@ -115,7 +115,7 @@ def vis_detections(im, class_name,dets,im_name,classNum,thresh=0.5):
 	angle,width=getAngle(imagecut,imageall,diff,bbox)
 	height=33
 	
-	result=[(bbox[2]-bbox[0])/2+bbox[0],(bbox[3]-bbox[1])/2+bbox[1],angle,height,width]
+	result=[round((bbox[2]-bbox[0])/2+bbox[0],2),round((bbox[3]-bbox[1])/2+bbox[1],2),round(angle,2),height,round(width,2)]
 	print result
 	f.write(str(result[0]))
 	f.write(",")
@@ -124,6 +124,7 @@ def vis_detections(im, class_name,dets,im_name,classNum,thresh=0.5):
 	f.write(str(result[2]))
 	f.write(",")
 	f.write(str(result[4]))
+	f.write("\n")
 
 def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
@@ -213,7 +214,4 @@ if __name__ == '__main__':
         print 'Demo for data/demo/{}'.format(im_name)
         demo(net, im_name) 	
     f.close()
-    	#plt.show()
-    #dataAll=pd.DataFrame(dataAll,columns=['filename', 'x', 'y'])
-    #dataAll.to_csv(dir+'/cut.csv')
 	

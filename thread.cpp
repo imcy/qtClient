@@ -50,7 +50,8 @@ void Thread::receiveImage(){
        }while(file_size-dwCountofBytesRecv);
        emit sendData("文件接收成功");
        fclose(stream);
-       QProcess::execute("python democy.py");
+       //QProcess::execute("python democy.py");
+       QProcess::execute("python ssd_detect.py");
        sendres(); //发送计算结果
     }
 
